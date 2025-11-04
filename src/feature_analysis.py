@@ -1,6 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-# import seaborn as sns
+import seaborn as sns
 import numpy as np
 from sklearn.compose import ColumnTransformer
 
@@ -11,7 +11,7 @@ def feature_correlation(df, target='SalePrice', top_n=20, save_path=None):
     print('📊 Top correlated features with', target)
     print(top)
     plt.figure(figsize=(8,6))
-    # sns.barplot(x=top.values, y=top.index)
+    sns.barplot(x=top.values, y=top.index)
     plt.xlabel('Correlation coefficient')
     plt.title(f'Top {top_n} features correlated with {target}')
     plt.tight_layout()
@@ -25,7 +25,7 @@ def correlation_heatmap(df, target='SalePrice', top_n=20):
     top_features = corr_all[target].abs().sort_values(ascending=False).head(top_n).index.tolist()
     sub = df[top_features].corr()
     plt.figure(figsize=(11,9))
-    # sns.heatmap(sub, annot=True, fmt='.2f', cmap='coolwarm', square=True)
+    sns.heatmap(sub, annot=True, fmt='.2f', cmap='coolwarm', square=True)
     plt.title(f'Correlation heatmap (Top {top_n} variables by |corr| to {target})')
     plt.tight_layout()
     plt.show()
@@ -91,7 +91,7 @@ def plot_feature_coeffs(pipe, preprocessor, feature_names, top_n=20):
     print('\n🔎 Top features by absolute coefficient:')
     print(top)
     plt.figure(figsize=(8,6))
-    # sns.barplot(x=top.values, y=top.index)
+    sns.barplot(x=top.values, y=top.index)
     plt.xlabel('Coefficient value (signed)')
     plt.title('Top feature coefficients (by absolute value)')
     plt.tight_layout()
